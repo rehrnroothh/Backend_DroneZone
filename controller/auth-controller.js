@@ -45,7 +45,7 @@ export const registerUser = async (req, res) => {
 
   export const getUserData = async (req, res) => {
 
-    const { user_id } = req.body;
+    const { user_id } = req.params;
 
     if (!user_id) {
       console.log("Missing user ID");
@@ -64,7 +64,14 @@ export const registerUser = async (req, res) => {
           return res.status(500).json({ error: "Failed to get user data" });
         }
 
-        res.status(200).json(data);
+        const washedData = {
+          name: data.name,
+          email: data.email,
+          lastname: data.lastname,
+          phone: data.phone_number,
+        }
+
+        res.status(200).json(washedData);
     } catch (error) {
       console.log("Error getting user data:", error);
       return res.status(500).json({ error: "Failed to get user data" });

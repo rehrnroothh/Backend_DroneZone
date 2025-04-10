@@ -13,7 +13,7 @@ authRouter.post("/register", registerUser);
 
 
 //Get specific user data 
-authRouter.get("/user", getUserData);
+authRouter.get("/user/:user_id", getUserData);
 
 /*
 
