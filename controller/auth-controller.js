@@ -41,6 +41,36 @@ export const registerUser = async (req, res) => {
   };
 
 
+  //Get specific user data 
+
+  export const getUserData = async (req, res) => {
+
+    const { user_id } = req.body;
+
+    if (!user_id) {
+      console.log("Missing user ID");
+      return res.status(400).json({ error: "User ID is required" });
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('AuthenticatedUser')
+        .select('*')
+        .eq('user_ID', user_id)
+        .single();
+
+        if (error) {
+          console.log("Error getting user data:", error);
+          return res.status(500).json({ error: "Failed to get user data" });
+        }
+
+        res.status(200).json(data);
+    } catch (error) {
+      console.log("Error getting user data:", error);
+      return res.status(500).json({ error: "Failed to get user data" });
+    }
+  }
+
 
 
   
