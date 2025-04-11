@@ -41,8 +41,7 @@ export const registerUser = async (req, res) => {
   };
 
 
-  //Get specific user data 
-
+  //Get specific user data /api/auth/user/:user_id
   export const getUserData = async (req, res) => {
 
     const { user_id } = req.params;

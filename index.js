@@ -7,6 +7,7 @@ import cors from "cors";
 
 /*Import of the HTTP routers here  */
 import { authRouter } from "./routes/authRoutes.js";
+import { devicesRouter } from "./routes/devicesRoutes.js";
 
 const app = express();
 const httpServer = createServer(app);
@@ -32,6 +33,7 @@ app.use(cors());
 
 /* HTTPS endpoints here */
 app.use("/api/auth", authRouter);
+app.use("/api/device", devicesRouter);
 
 /*Websockets events here*/
 io.on("connection", (socket) => {
