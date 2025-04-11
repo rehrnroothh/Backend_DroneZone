@@ -64,7 +64,7 @@ export const registerUser = async (req, res) => {
         }
 
         const washedData = {
-          name: data.name,
+          firstname: data.name,
           email: data.email,
           lastname: data.lastname,
           phone: data.phone_number,

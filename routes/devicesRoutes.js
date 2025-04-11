@@ -1,5 +1,6 @@
 import express from "express";
-import { addDevice, getDevices } from "../controller/device-controller.js";
+import { addDevice, getDevices, deleteDevice } from "../controller/device-controller.js";
+
 
 
 const devicesRouter = express.Router();
@@ -9,6 +10,8 @@ devicesRouter.post("/", addDevice)
 
 //User fetching all devices to display on account view
 devicesRouter.get("/:user_id", getDevices);
+
+devicesRouter.delete("/:device_id", deleteDevice);
 
 
 

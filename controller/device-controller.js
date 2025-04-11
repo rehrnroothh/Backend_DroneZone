@@ -64,7 +64,35 @@ const addDevice = async (req, res) => {
     
 }
 
+const deleteDevice = async (req, res) => {
+    const { device_id } = req.params;
+
+    console.log(device_id)
+
+    if (!device_id) {
+        console.log("Missing device ID");
+        return res.status(400).json({ error: "Device ID is required" });
+    }
+
+    try {
+        const { error } = await supabase
+            .from('Devices')
+            .delete()
+            .eq('deviceTableID', device_id)
+
+        if (error) {
+            console.log("Error deleting device:")
+            console.log(error)
+            return res.status(500).json({ error: "Failed to delete device" });
+        }
+
+        res.status(200).json({ message: "Device deleted successfully" });
+    } catch (error) {
+        console.log("Error deleting device:", error);
+        return res.status(500).json({ error: "Failed to delete device" });
+    }
+}
 
 
-export {addDevice, getDevices}
+export {addDevice, getDevices, deleteDevice}
 
