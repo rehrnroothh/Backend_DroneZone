@@ -1,4 +1,4 @@
-
+import {supabase} from "../config/supabaseConfig.js";
 
 //Used to get all devices for a user /api/device/:user_id
 const getDevices = async (req, res) => {
@@ -46,12 +46,13 @@ const addDevice = async (req, res) => {
             .from('Devices')
             .insert({
                 user_ID: user_id,
-                device_ID: deviceID,
+                deviceID: deviceID,
                 deviceName: deviceName
             })
 
         if (error) {
-            console.log("Error adding device:", error);
+            console.log("Error adding device:")
+            console.log(error)
             return res.status(500).json({ error: "Failed to add device" });
         }
 
