@@ -8,7 +8,8 @@ const getZones = async (req, res) => {
             .select('coorArray')
             .eq('zoneID', '0bcf1844-be48-45dd-af40-47d2b117580f')
 
-            console.log(data[0].coorArray);
+            console.log(data[0]);
+            res.send(data[0]);
 
     } catch (error) {
         console.log("Error getting zones:", error);
