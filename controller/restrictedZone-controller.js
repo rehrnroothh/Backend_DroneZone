@@ -6,9 +6,9 @@ const getZones = async (req, res) => {
         const { data, error } = await supabase
             .from('RestrictedZones')
             .select('coorArray')
-            .eq('zoneID', '0bcf1844-be48-45dd-af40-47d2b117580f')
 
             console.log(data[0].coorArray);
+            res.send(data);
 
     } catch (error) {
         console.log("Error getting zones:", error);
