@@ -73,7 +73,7 @@ io.on("connection", async (socket) => {
       .insert({
         userID: userID,
         deviceID: deviceID,
-        flyingRoute: flyingRoute,
+        dronePath: flyingRoute,
         currentPosition: currentPosition,
         activeFlight: activeFlight
       })
