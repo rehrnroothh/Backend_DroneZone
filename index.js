@@ -97,14 +97,18 @@ io.on("connection", async (socket) => {
 
   //endFlight event is initialized by the client, when the client is done flying.
   // Server then want's to store the flight as not active and the flight time in the database
-  socket.on("endFlight",  async (data) => {
+  socket.on("endFlight",  async (flightData) => {
 
     try {
 
-      const { userID, deviceID, flightTime, activeFlight } = data;
-      console.log("End flight data", data);
+      const { userID, deviceID, flightTime, activeFlight } = flightData;
+      console.log("End flight data", flightData);
+      console.log(userID);
+      console.log(deviceID);
+      console.log(flightTime);
+      console.log(activeFlight);
 
-      if(!userID || !deviceID || !flightTime || !activeFlight) {
+      if(!userID || !deviceID || !flightTime || activeFlight === null) {
         console.log("Missing required fields");
         socket.emit("flight_end_failed", { message: "Missing required fields" });
         return;
