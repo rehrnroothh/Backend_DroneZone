@@ -11,6 +11,7 @@ import { authRouter } from "./routes/authRoutes.js";
 import { devicesRouter } from "./routes/devicesRoutes.js";
 import { zoneRouter } from "./routes/restrictedZoneRoutes.js";
 import { emitRouter } from "./routes/socketRoutes.js";
+import { droneRouter } from "./routes/droneRoutes.js";
 
 dotenv.config(); //Load environment variables from .env file
 
