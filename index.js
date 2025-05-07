@@ -51,7 +51,7 @@ io.use((socket, next) => {
 
   const { userID, deviceID, flyingRoute, currentPosition, activeFlight } = socket.handshake.auth; 
 
-  //TODO: Add checkign so users USER_ID i stored in DB as well?
+  //TODO: Add checking so users USER_ID i stored in DB as well?
   if( !userID || !deviceID || !flyingRoute || !currentPosition || !activeFlight) {
     console.log("Missing required fields");
     return next(new Error("Missing required fields"));

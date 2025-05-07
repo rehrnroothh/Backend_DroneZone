@@ -46,7 +46,7 @@ const addDevice = async (req, res) => {
             .from('Devices')
             .insert({
                 user_ID: user_id,
-                deviceID: deviceID,
+                droneID: deviceID,
                 deviceName: deviceName
             })
 
