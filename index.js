@@ -42,6 +42,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/device", devicesRouter);
 app.use("/api/zone", zoneRouter);
 app.use("/api/message", emitRouter);
+app.use("/api/drone", droneRouter);
 
 
 
@@ -103,11 +104,6 @@ io.on("connection", async (socket) => {
     try {
 
       const { userID, deviceID, flightTime, activeFlight } = flightData;
-      console.log("End flight data", flightData);
-      console.log(userID);
-      console.log(deviceID);
-      console.log(flightTime);
-      console.log(activeFlight);
 
       if(!userID || !deviceID || !flightTime || activeFlight === null) {
         console.log("Missing required fields");
