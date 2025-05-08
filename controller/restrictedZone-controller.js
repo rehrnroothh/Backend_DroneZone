@@ -7,9 +7,8 @@ const getZones = async (req, res) => {
             .from('RestrictedZones')
             .select('coorArray')
 
-            console.log(data[0].coorArray);
             res.send(data);
-
+            
     } catch (error) {
         console.log("Error getting zones:", error);
         return res.status(500).json({ error: "Failed to get zones" });

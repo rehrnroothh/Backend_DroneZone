@@ -54,6 +54,7 @@ io.use((socket, next) => {
   const { userID, deviceID, flyingRoute, currentPosition, activeFlight } = socket.handshake.auth; 
 
   //TODO: Add checking so users USER_ID i stored in DB as well?
+
   if( !userID || !deviceID || !flyingRoute || !currentPosition || !activeFlight) {
     console.log("Missing required fields");
     return next(new Error("Missing required fields"));
@@ -144,11 +145,45 @@ io.on("connection", async (socket) => {
 
   //TODO: Implement logic for how to handle the updatePosition event
   // Just update the position in the DB
-  socket.on("updatePosition", async (data) => {
+  socket.on("updatePosition", async (updatePositionData) => {
+
     try {
-      console.log("Position updated", data);
+      const { userID, currentPosition } = updatePositionData;
+
+
+      console.log("userID: ", userID);
+      console.log("currentPosition: ", currentPosition);
+
+      if(!userID || !currentPosition) {
+        console.log("Missing required fields from updatePosition event");
+        socket.emit("position_update_failed", { message: "Missing required fields" });
+        return;
+      }
+
+      //Stores clients data in the database
+      const { error, data } = await supabase
+      .from("FlightRecord")
+      .update({
+        currentPosition: currentPosition
+      })
+      .eq("userID", userID)
+      .eq("activeFlight", true);
+      
+      
+
+      //Handles error if storing flight data fails
+      if (error) {
+        console.error("Error updating position", error);
+        socket.emit("position_update_failed", { message: "Failed to update position. Please try again." });
+        return;
+      }
+
+      console.log("Successfully updated position");
+      socket.emit("position_update_success", { message: "Position updated successfully." });
+
     } catch (error) {
       console.error("Error updating position", error);
+      socket.emit("position_update_failed", { message: "An unexpected error occurred when updating position. Please try again." });
     }
   });
 
@@ -159,8 +194,6 @@ io.on("connection", async (socket) => {
 
 
 });
-
-
 
 
 // Admin dashboard configuration for socket.io
