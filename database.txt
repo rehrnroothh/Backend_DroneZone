@@ -1,0 +1,7 @@
+sudo systemctl postgresql
+sudo -su postgres
+//Database name dronezone
+psql -d dronezone
+//Logged in!
+--------------------------------------------------------
+
