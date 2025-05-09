@@ -17,7 +17,6 @@ export const getAllDrones = async (req, res) => {
         const deviceIDArray = data.map((item) => item.deviceID);
         console.log(deviceIDArray);
 
-
         const deviceNameArray = await Promise.all(data.map(async (item) => {
 
             const { data, error } = await supabase
@@ -40,9 +39,7 @@ export const getAllDrones = async (req, res) => {
             droneID: deviceNameArray[index]
         }));
 
-        console.log(washedData);
-
-        // res.status(200).json(washedData);
+        res.status(200).json(washedData);
 
     } catch (error) {
         console.log("Error getting drones:", error);
