@@ -1,0 +1,9 @@
+Some identified changes:
+	Vi behöver ändra map -- restricted zones måste tänkas om men även flightpath ska ej displayas som ett alternativ om du ej är inloggad.
+	Organizational och mission critical user kan vi igga
+	Flightpaths måste migratea till history efter att den har varit är klar, kanske kan droppa 'activeFlight' --- alltså alla som inte är active hamnar automatiskt i 
+		history!
+	I inbox: add för messages: messageDate, messageTime, messageID och messageRead
+		 add för alert: alertDate, alertTime, alertID och alertReceived
+	Helikopter utanför scope --> därmed ta bort helikopter table och drone id. Endast devices!!!
+	Är admin nödvändig, kan tillsvidare bara lösas programmatiskt ----

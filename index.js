@@ -13,6 +13,10 @@ import { zoneRouter } from "./routes/restrictedZoneRoutes.js";
 import { emitRouter } from "./routes/socketRoutes.js";
 import { droneRouter } from "./routes/droneRoutes.js";
 
+//----------- Warned User --------
+
+import { warnedUser } from "./routes/warnedUser.js";
+
 dotenv.config(); //Load environment variables from .env file
 
 const app = express();
@@ -45,6 +49,11 @@ app.use("/api/device", devicesRouter);
 app.use("/api/zone", zoneRouter);
 app.use("/api/message", emitRouter);
 app.use("/api/drone", droneRouter);
+
+// --------- Warned User Alert ----- TEST
+
+app.use("/api/alerts", warnedUser);
+
 
 
 
