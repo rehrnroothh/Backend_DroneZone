@@ -15,7 +15,6 @@ export const getAllDrones = async (req, res) => {
 
 
         const deviceIDArray = data.map((item) => item.deviceID);
-        console.log(deviceIDArray);
 
         const deviceNameArray = await Promise.all(data.map(async (item) => {
 
