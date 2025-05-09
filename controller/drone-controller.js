@@ -13,8 +13,6 @@ export const getAllDrones = async (req, res) => {
             return res.status(500).json({ error: "Failed to get drones" });
         }
 
-        console.log(data);
-    
         res.status(200).json(data);
 
     } catch (error) {
