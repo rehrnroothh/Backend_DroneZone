@@ -33,6 +33,7 @@ app.use(cors(corsOptions));
 export const io = new Server(httpServer, {
   cors: {
     origin: '*', // Allow all origins
+
     credentials: true,
   },
   connectionStateRecovery: {} // Enables so the server sends events a client could have missed if it disconnected for a short time

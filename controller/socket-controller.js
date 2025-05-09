@@ -14,10 +14,3 @@ const takeDownDrone = async (req, res) => {
 
 
 export { takeDownDrone } ;
-
-
-//Illustration of the data structure of the object which will be sent to server when client launches
-// const exampleData = {
-//     coordinate:{ lat: 0, lng: 0, alt: 0, visible: true },
-//     userID: "1"
-// }
