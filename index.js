@@ -55,7 +55,7 @@ io.use((socket, next) => {
 
   //TODO: Add checking so users USER_ID i stored in DB as well?
 
-  if( !userID || !deviceID || !flyingRoute || !currentPosition || !activeFlight) {
+  if( !userID || !deviceID || !flyingRoute || !currentPosition || activeFlight === null) {
     console.log("Missing required fields");
     return next(new Error("Missing required fields"));
   }
