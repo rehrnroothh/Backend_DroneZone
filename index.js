@@ -25,6 +25,7 @@ const httpServer = createServer(app);
 // Configure CORS to allow all origins
 const corsOptions = {
   origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 };
 
