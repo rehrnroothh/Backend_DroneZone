@@ -26,6 +26,8 @@ export const io = new Server(httpServer, {
       "https://localhost:8080",
       "http://localhost:5173",
       "https://localhost:5173",
+      "http://dronezone.se",
+      "https://dronezone.se",
     ],
     credentials: true,
   },
