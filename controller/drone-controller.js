@@ -5,7 +5,7 @@ export const getAllDrones = async (req, res) => {
     try {
         const { data, error } = await supabase
             .from('FlightRecord')
-            .select("dronePath, deviceID, currentPosition")
+            .select("dronePath, deviceID, currentPosition, userID")
             .eq('activeFlight', true)
 
         if (error) {
@@ -15,7 +15,6 @@ export const getAllDrones = async (req, res) => {
 
 
         const deviceIDArray = data.map((item) => item.deviceID);
-        console.log(deviceIDArray);
 
         const deviceNameArray = await Promise.all(data.map(async (item) => {
 
