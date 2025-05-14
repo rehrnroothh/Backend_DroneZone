@@ -74,35 +74,37 @@ io.use((socket, next) => {
 //TODO: Implement logic for how to handle the connection event
 io.on("connection", async (socket) => {
 
-  try {
+  socket.on("launchFlight", async () => {
+    try {
 
-    const { userID, deviceID, flyingRoute, currentPosition, activeFlight } = socket.handshake.auth;
+      const { userID, deviceID, flyingRoute, currentPosition, activeFlight } = socket.handshake.auth;
 
-    //Stores clients data in the database
-    const { error, data } = await supabase
-      .from("FlightRecord")
-      .insert({
-        userID: userID,
-        deviceID: deviceID,
-        dronePath: flyingRoute,
-        currentPosition: currentPosition,
-        activeFlight: activeFlight
-      })
+      //Stores clients data in the database
+      const { error, data } = await supabase
+        .from("FlightRecord")
+        .insert({
+          userID: userID,
+          deviceID: deviceID,
+          dronePath: flyingRoute,
+          currentPosition: currentPosition,
+          activeFlight: activeFlight
+        })
 
-      //Handles error if storing flight data fails
-      if (error) {
-        console.error("Error storing flight data", error);
-        socket.emit("flight_record_error", {error: error});
-        return;
-      }
+        //Handles error if storing flight data fails
+        if (error) {
+          console.error("Error storing flight data", error);
+          socket.emit("flight_record_error", {error: error});
+          return;
+        }
 
-      console.log("Successfully stored flight data");
-      socket.emit("flight_record_success", { message: "Flight data stored successfully, you can now fly." });
+        console.log("Successfully stored flight data");
+        socket.emit("flight_record_success", { message: "Flight data stored successfully, you can now fly." });
 
-  } catch (error) {
-    console.error("Unexpected error in connection handler:", error);
-    socket.emit("flight_record_error", { message: "An unexpected error occurred. Please try again later." });
-  }
+    } catch (error) {
+      console.error("Unexpected error in connection handler:", error);
+      socket.emit("flight_record_error", { message: "An unexpected error occurred. Please try again later." });
+    }
+  })
 
   //endFlight event is initialized by the client, when the client is done flying.
   // Server then want's to store the flight as not active and the flight time in the database
