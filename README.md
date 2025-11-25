@@ -19,7 +19,7 @@ api/auth/login
 api/auth/logout
 
 ### Views:
-- Frontend repo : https://github.com/andensanden/II1305
+- Frontend repo : https://github.com/rehrnroothh/DroneZone
 
 ### Index.js:
 - Entry point of the application
